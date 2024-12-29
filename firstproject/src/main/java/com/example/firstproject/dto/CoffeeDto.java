@@ -10,7 +10,7 @@ import lombok.ToString;
 public class CoffeeDto {
     private Long id;
     private String name;
-    private String price;
+    private Long price;
 
     public Coffee toEntity(){
         return new Coffee(id, name, price);

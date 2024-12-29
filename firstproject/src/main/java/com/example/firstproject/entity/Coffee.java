@@ -11,16 +11,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Coffee {
-    @Getter
+@Getter
 
+public class Coffee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String name;
     @Column
-    private String price;
+    private Long price;
 
     public void patch(Coffee coffee) {
         if (coffee.name != null)
