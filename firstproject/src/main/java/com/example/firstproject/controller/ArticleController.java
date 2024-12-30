@@ -1,8 +1,10 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.dto.ArticleForm;
+import com.example.firstproject.dto.CommentDto;
 import com.example.firstproject.entity.Article;
 import com.example.firstproject.repository.ArticleRepository;
+import com.example.firstproject.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import java.util.List;
 public class ArticleController {
     @Autowired //Dependency Injection(DI): 인터페이스지만 스프링부트가 자동으로 객체를 생성, 주입.
     private ArticleRepository articleRepository;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/articles/new")
     public String newArticleForm(){
@@ -42,7 +46,9 @@ public class ArticleController {
     public String show(@PathVariable Long id, Model model){
         log.info("id = " + id);
         Article articleEntity = articleRepository.findById(id).orElse(null);
+        List<CommentDto> dtos = commentService.comments(id);
         model.addAttribute("article", articleEntity);
+        model.addAttribute("commentDtos", dtos);
         return "articles/show";
     }
 

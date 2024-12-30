@@ -50,6 +50,7 @@ public class ReviewService {
         return ReviewDto.createDto(updated);
     }
 
+    @Transactional
     public ReviewDto delete(Long reviewId) {
         Review target = reviewRepository.findById(reviewId).orElseThrow(
                 ()->new IllegalArgumentException("존재하지 않는 리뷰입니다."));
