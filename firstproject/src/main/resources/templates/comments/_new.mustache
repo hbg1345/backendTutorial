@@ -35,11 +35,10 @@
                     },
                 body: JSON.stringify(comment)
             }).then(response=> {
-            const msg = (response.ok) ? "댓글 등록 완료." : "댓글 등록 실패.";
-            alert(msg);
-            window.location.reload();
+                const msg = (response.ok) ? "댓글 등록 완료." : "댓글 등록 실패.";
+                alert(msg);
+                window.location.reload();});
             });
-    });
 
 }
 </script>
